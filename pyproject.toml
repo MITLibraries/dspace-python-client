@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "dspace-python-client"
+version = "0.1.0"
+description = "Python Client library for working with the DSpace API"
+authors = ["Helen Bailey <hbailey@mit.edu>", "Eric Hanson <ehanson@mit.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
