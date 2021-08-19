@@ -1,4 +1,4 @@
-.PHONY: coveralls install lint test update bandit black flake isort
+.PHONY: coveralls install lint sphinx test update bandit black flake isort
 
 help: ## Print this message
 	@awk 'BEGIN { FS = ":.*##"; print "Usage:  make <target>\n\nTargets:" } \
@@ -14,6 +14,11 @@ lint: bandit black flake isort ## Runs all linters
 
 test: ## Run tests
 	poetry run pytest --cov=dspace
+
+sphinx: ## Build docs with Sphinx
+	poetry run $(MAKE) -C docs clean
+	poetry run sphinx-apidoc -f -o docs/source/ dspace
+	poetry run $(MAKE) -C docs html
 
 update: ## Update all Python dependencies
 	poetry update
