@@ -6,15 +6,23 @@ authors = ["Helen Bailey <hbailey@mit.edu>", "Eric Hanson <ehanson@mit.edu>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+attrs = "^21.2.0"
+requests = "^2.26.0"
+structlog = "^21.1.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
 black = "^21.7b0"
+coveralls = "^3.2.0"
 flake8 = "^3.9.2"
 isort = "^5.9.3"
+pytest = "^6.2.4"
+pytest-cov = "^2.12.1"
+python-dotenv = "^0.19.0"
 Sphinx = "^4.1.2"
-sphinx-press-theme = "^0.8.0"
 sphinx-autodoc-typehints = "^1.12.0"
+sphinx-rtd-theme = "^0.5.2"
+vcrpy = "^4.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

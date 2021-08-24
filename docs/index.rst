@@ -12,6 +12,7 @@ dspace-python-client Documentation
    :caption: Contents:
 
    Getting Started <readme>
+   API Docs <source/modules>
 
 -------
 License
