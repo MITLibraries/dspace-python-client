@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 project = "dspace-python-client"
-copyright = "2021, Helen Bailey, Eric Hanson"
+copyright = "2021, MIT Libraries"
 author = "Helen Bailey, Eric Hanson"
 
 # The full version, including alpha/beta/rc tags
