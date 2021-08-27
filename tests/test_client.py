@@ -27,6 +27,24 @@ def test_client_get_method(my_vcr, vcr_env):
         assert isinstance(response, requests.Response)
 
 
+def test_client_get_object_by_handle(my_vcr, test_client, vcr_env):
+    with my_vcr.use_cassette("tests/vcr_cassettes/client/get_object_by_handle.yaml"):
+        collection = test_client.get_object_by_handle("1721.1/130884")
+        assert collection["name"] == "Graduate Theses"
+        assert collection["type"] == "collection"
+        assert collection["uuid"] == "72dfcada-de27-4ce7-99cc-68266ebfd00c"
+
+
+def test_client_get_object_by_handle_raises_error_if_doesnt_exist(
+    my_vcr, test_client, vcr_env
+):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/client/get_object_by_handle_doesnt_exist.yaml"
+    ):
+        with pytest.raises(requests.HTTPError):
+            test_client.get_object_by_handle("1721.1/000000")
+
+
 def test_client_login(my_vcr, vcr_env):
     with my_vcr.use_cassette("tests/vcr_cassettes/client/login.yaml"):
         client = DSpaceClient(vcr_env["url"])

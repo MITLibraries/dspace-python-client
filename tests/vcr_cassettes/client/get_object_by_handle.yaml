@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: GET
+    uri: https://dspace-example.com/rest/handle/1721.1/130884
+  response:
+    body:
+      string: '{"uuid": "72dfcada-de27-4ce7-99cc-68266ebfd00c", "name": "Graduate
+        Theses", "handle": "1721.1/130884", "type": "collection", "expand": ["parentCommunityList",
+        "parentCommunity", "items", "license", "logo", "all"], "logo": null, "parentCommunity":
+        null, "parentCommunityList": [], "items": [], "license": null, "copyrightText":
+        "", "shortDescription": "", "sidebarText": "", "numberItems": 31443, "link":
+        "/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c"}'
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Aug 2021 14:19:27 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

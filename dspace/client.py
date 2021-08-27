@@ -15,19 +15,16 @@ class DSpaceClient:
         accept_header: The response type to use in the requests "accept" header -- one
             of "application/json" or "application/xml", defaults to "application/json"
 
-    Returns:
-        :class:`DSpaceClient` object
-
-    Example:
-        >>> from dspace.client import DSpaceClient
-        >>> client = DSpaceClient("https://dspace.myuniversity.edu/api")
-        >>> client.login("user@example.com", "password")
+    Attributes:
+        base_url: The base url of the DSpace API
+        cookies: Cookies for use in client requests
+        headers: Headers for use in client requests
     """
 
     def __init__(self, base_url: str, accept_header: str = "application/json"):
         self.base_url: str = base_url.rstrip("/")
-        self.headers: dict[str] = {"accept": accept_header}
-        self.cookies: dict[str] = {}
+        self.headers: Dict[str, str] = {"accept": accept_header}
+        self.cookies: dict = {}
         logger.debug(
             f"Client initialized with params base_url={self.base_url}, "
             f"accept_header={self.headers}"
@@ -54,8 +51,9 @@ class DSpaceClient:
             :class:`requests.Response` object
 
         Raises:
-            :class:`requests.exceptions.HTTPError`: Response status code is 4xx or 5xx
-            :class:`requests.exceptions.Timeout`: Server takes more than 5 seconds to
+            :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
+                5xx
+            :class:`requests.exceptions.Timeout`: if server takes more than 5 seconds to
                 respond
         """
         url = self.base_url + endpoint
@@ -64,6 +62,25 @@ class DSpaceClient:
         )
         response.raise_for_status()
         return response
+
+    def get_object_by_handle(self, handle: str) -> Dict[str, Any]:
+        """Get a DSpace object based on its handle instead of its UUID.
+
+        Args:
+            handle: Handle of a DSpace community, collection, or item, e.g.
+                '1721.1/130883'
+
+        Returns:
+            Dict representation of the DSpace object matching the handle
+
+        Raises:
+            :class:`requests.HTTPError`: 500 Server Error if no object matching the
+                provided handle is found
+        """
+        logger.debug(f"Retrieving uuid for item from handle {handle}")
+        endpoint = f"/handle/{handle}"
+        response = self.get(endpoint)
+        return response.json()
 
     def login(self, email: str, password: str) -> None:
         """Authenticate a user to the DSpace REST API. If authentication is successful,
@@ -74,7 +91,8 @@ class DSpaceClient:
             password: The password of the DSpace user
 
         Raises:
-            :class:`requests.exceptions.HTTPError`: Response status code 401 unauthorized
+            :class:`requests.exceptions.HTTPError`: 401 Client Error if provided
+                credentials are unauthorized
         """
         logger.debug(f"Attempting to authenticate to {self.base_url} as {email}")
         endpoint = "/login"
@@ -84,7 +102,11 @@ class DSpaceClient:
         logger.debug(f"Successfully authenticated to {self.base_url} as {email}")
 
     def post(
-        self, endpoint: str, data: Optional[bytes], params: Optional[dict] = None
+        self,
+        endpoint: str,
+        data: Optional[bytes] = None,
+        json: Optional[dict] = None,
+        params: Optional[dict] = None,
     ) -> requests.Response:
         """Send a POST request to a specified endpoint and return the result.
 
@@ -95,15 +117,17 @@ class DSpaceClient:
         Args:
             endpoint: The DSPace REST endpoint to post to, e.g. "/login"
             data: The data to post
+            json: Data to post as JSON (uses requests' built-in JSON encoder)
             params: Additional params that should be submitted with the request
 
         Returns:
             :class:`requests.Response` object
 
         Raises:
-            :class:`requests.exceptions.HTTPError`: Response status code 4xx or 5xx
-            :class:`requests.exceptions.Timeout`: Server takes more than 5 seconds to
-                respond
+            :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
+                5xx
+            :class:`requests.exceptions.Timeout`: if server takes more than 15 seconds
+                to respond
         """
         url = self.base_url + endpoint
         response = requests.post(
@@ -111,8 +135,9 @@ class DSpaceClient:
             cookies=self.cookies,
             data=data,
             headers=self.headers,
+            json=json,
             params=params,
-            timeout=5.0,
+            timeout=15.0,
         )
         response.raise_for_status()
         return response
