@@ -40,7 +40,11 @@ class DSpaceClient:
         )
 
     def get(self, endpoint: str, params: Optional[dict] = None) -> requests.Response:
-        """Send a GET reqeust to the specified endpoint and return the result.
+        """Send a GET request to the specified endpoint and return the result.
+
+        This method is internal to the library (although not private to this class)
+        and should generally not be called directly. It is used by other classes to send
+        GET requests using the client's stored authentication cookie and headers.
 
         Args:
             endpoint: The DSPace REST endpoint to get, e.g. "/status"
@@ -83,6 +87,10 @@ class DSpaceClient:
         self, endpoint: str, data: Optional[bytes], params: Optional[dict] = None
     ) -> requests.Response:
         """Send a POST request to a specified endpoint and return the result.
+
+        This method is internal to the library (although not private to this class)
+        and should generally not be called directly. It is used by other classes to send
+        POST requests using the client's stored authentication cookie and headers.
 
         Args:
             endpoint: The DSPace REST endpoint to post to, e.g. "/login"

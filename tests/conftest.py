@@ -13,7 +13,7 @@ load_dotenv()
 @pytest.fixture
 def my_vcr():
     my_vcr = vcr.VCR(
-        before_record_request=vcr_scrub_reqeust,
+        before_record_request=vcr_scrub_request,
         before_record_response=vcr_scrub_response,
         decode_compressed_response=True,
         filter_post_data_parameters=[
@@ -30,8 +30,8 @@ def vcr_env():
     if os.getenv("DSPACE_PYTHON_CLIENT_ENV") == "vcr_create_cassettes":
         env = {
             "url": os.environ["TEST_DSPACE_API_URL"],
-            "email": os.getenv("TEST_DSPACE_EMAIL"),
-            "password": os.getenv("TEST_DSPACE_PASSWORD"),
+            "email": os.environ["TEST_DSPACE_EMAIL"],
+            "password": os.environ["TEST_DSPACE_PASSWORD"],
         }
     else:
         env = {
@@ -42,7 +42,7 @@ def vcr_env():
     return env
 
 
-def vcr_scrub_reqeust(request):
+def vcr_scrub_request(request):
     """Replaces the request URI with fake data"""
     split_uri = urllib.parse.urlsplit(request.uri)
     new_uri = urllib.parse.urljoin("https://dspace-example.com", split_uri.path)

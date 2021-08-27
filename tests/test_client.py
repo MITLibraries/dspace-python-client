@@ -20,6 +20,13 @@ def test_client_repr():
     )
 
 
+def test_client_get_method(my_vcr, vcr_env):
+    with my_vcr.use_cassette("tests/vcr_cassettes/client/status.yaml"):
+        client = DSpaceClient(vcr_env["url"])
+        response = client.get("/status")
+        assert isinstance(response, requests.Response)
+
+
 def test_client_login(my_vcr, vcr_env):
     with my_vcr.use_cassette("tests/vcr_cassettes/client/login.yaml"):
         client = DSpaceClient(vcr_env["url"])
@@ -33,6 +40,15 @@ def test_client_login_raises_auth_error(my_vcr, vcr_env):
         client = DSpaceClient(vcr_env["url"])
         with pytest.raises(requests.HTTPError):
             client.login("fake_user@example.com", "fake_password")
+
+
+def test_client_post_method(my_vcr, vcr_env):
+    with my_vcr.use_cassette("tests/vcr_cassettes/client/login.yaml"):
+        client = DSpaceClient(vcr_env["url"])
+        response = client.post(
+            "/login", data={"email": vcr_env["email"], "password": vcr_env["password"]}
+        )
+        assert isinstance(response, requests.Response)
 
 
 def test_client_status(my_vcr, vcr_env):
