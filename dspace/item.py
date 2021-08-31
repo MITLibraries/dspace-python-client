@@ -7,7 +7,6 @@ with functions for interacting with the DSpace REST API "/items" endpoint.
 
 from __future__ import annotations
 
-import json
 from typing import Dict, List, Optional
 
 import structlog
@@ -48,13 +47,16 @@ class Item:
             collection_id: The UUID (not the handle) of the DSpace collection to post
                 the item to
 
+        Returns:
+            :class:`requests.Response` object
+
         Raises:
-            :class:`requests.HTTPError`: 404 Not Found if no collection matching provided
-                UUID
+            :class:`requests.HTTPError`: 404 Not Found if no collection matching
+                provided UUID
         """
 
         endpoint = f"/collections/{collection_uuid}/items"
-        metadata = {"metadata": [m.to_json() for m in self.metadata]}
+        metadata = {"metadata": [m.to_dict() for m in self.metadata]}
         logger.debug(
             f"Posting new item to {client.base_url}{endpoint} with metadata "
             f"{metadata}"
@@ -83,13 +85,13 @@ class MetadataEntry:
         self.value = value
         self.language = language
 
-    def to_json(self) -> str:
-        """Method to convert the MetadataEntry object to a JSON string
+    def to_dict(self) -> dict:
+        """Method to convert the MetadataEntry object to a dict
 
         Returns:
-            JSON string representation of the metadata entry
+            Dict representation of the metadata entry
         """
-        return json.dumps({key: value for key, value in self.__dict__.items() if value})
+        return {key: value for key, value in self.__dict__.items() if value}
 
     @classmethod
     def from_dict(cls, entry: Dict[str, str]) -> MetadataEntry:

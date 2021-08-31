@@ -1,13 +1,14 @@
 interactions:
 - request:
-    body: '{"metadata": [{"key": "dc.title", "value": "Test Item"}]}'
+    body: '{"metadata": [{"key": "dc.title", "value": "Test Item"}, {"key": "dc.contributor.author",
+      "value": "Jane Q. Author"}]}'
     headers:
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
       Content-Length:
-      - '57'
+      - '118'
       Content-Type:
       - application/json
       Cookie:
@@ -20,8 +21,8 @@ interactions:
     uri: https://dspace-example.com/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c/items
   response:
     body:
-      string: '{"uuid":"b3bc3232-a1ff-49ec-b816-aa8ebde60258","name":"Test Item","handle":"1721.1/131167","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Fri
-        Aug 27 13:42:16 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"withdrawn":"false","archived":"true","link":"/rest/items/b3bc3232-a1ff-49ec-b816-aa8ebde60258","metadata":null}'
+      string: '{"uuid":"2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","name":"Test Item","handle":"1721.1/131170","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Tue
+        Aug 31 19:48:50 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","metadata":null}'
     headers:
       Connection:
       - close
@@ -30,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Aug 2021 13:42:06 GMT
+      - Tue, 31 Aug 2021 19:48:47 GMT
       Strict-Transport-Security:
       - max-age=63072000
     status:

@@ -1,5 +1,5 @@
 # dspace/client.py
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
 
 import requests
 import structlog
@@ -63,7 +63,7 @@ class DSpaceClient:
         response.raise_for_status()
         return response
 
-    def get_object_by_handle(self, handle: str) -> Dict[str, Any]:
+    def get_object_by_handle(self, handle: str) -> requests.Response:
         """Get a DSpace object based on its handle instead of its UUID.
 
         Args:
@@ -71,16 +71,18 @@ class DSpaceClient:
                 '1721.1/130883'
 
         Returns:
-            Dict representation of the DSpace object matching the handle
+            :class:`requests.Response` object.
+            Response body is a json representation of the DSpace object with the
+            provided handle
 
         Raises:
             :class:`requests.HTTPError`: 500 Server Error if no object matching the
                 provided handle is found
         """
-        logger.debug(f"Retrieving uuid for item from handle {handle}")
+        logger.debug(f"Retrieving object by handle {handle}")
         endpoint = f"/handle/{handle}"
         response = self.get(endpoint)
-        return response.json()
+        return response
 
     def login(self, email: str, password: str) -> None:
         """Authenticate a user to the DSpace REST API. If authentication is successful,
@@ -142,11 +144,12 @@ class DSpaceClient:
         response.raise_for_status()
         return response
 
-    def status(self) -> Dict[str, Any]:
+    def status(self) -> requests.Response:
         """Get current authentication status of :class:`DSpaceClient` instance.
 
         Returns:
-            Dict representation of `DSpace Status object`_
+            :class:`requests.Response` object.
+            Response body is a json representation of a `DSpace Status object`_
 
             .. _DSpace Status object: https://wiki.lyrasis.org/display/DSDOC6x/\
                 REST+API#RESTAPI-StatusObject
@@ -154,4 +157,4 @@ class DSpaceClient:
         logger.debug(f"Retrieving authentication status from {self.base_url}")
         endpoint = "/status"
         response = self.get(endpoint)
-        return response.json()
+        return response

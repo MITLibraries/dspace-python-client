@@ -29,7 +29,7 @@ def test_client_get_method(my_vcr, vcr_env):
 
 def test_client_get_object_by_handle(my_vcr, test_client, vcr_env):
     with my_vcr.use_cassette("tests/vcr_cassettes/client/get_object_by_handle.yaml"):
-        collection = test_client.get_object_by_handle("1721.1/130884")
+        collection = test_client.get_object_by_handle("1721.1/130884").json()
         assert collection["name"] == "Graduate Theses"
         assert collection["type"] == "collection"
         assert collection["uuid"] == "72dfcada-de27-4ce7-99cc-68266ebfd00c"
@@ -69,11 +69,8 @@ def test_client_post_method(my_vcr, vcr_env):
         assert isinstance(response, requests.Response)
 
 
-def test_client_status(my_vcr, vcr_env):
+def test_client_status(my_vcr, test_client, vcr_env):
     with my_vcr.use_cassette("tests/vcr_cassettes/client/status.yaml"):
-        client = DSpaceClient(vcr_env["url"])
-        status = client.status()
-        assert status["authenticated"] is False
-        client.login(vcr_env["email"], vcr_env["password"])
-        status = client.status()
+        status = test_client.status().json()
+        assert status["okay"] is True
         assert status["authenticated"] is True

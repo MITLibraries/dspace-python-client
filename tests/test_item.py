@@ -14,14 +14,19 @@ def test_item_instantiates_with_expected_values():
 
 def test_item_post(my_vcr, test_client):
     with my_vcr.use_cassette("tests/vcr_cassettes/item/post.yaml"):
-        item = Item(metadata=[MetadataEntry(key="dc.title", value="Test Item")])
+        item = Item(
+            metadata=[
+                MetadataEntry(key="dc.title", value="Test Item"),
+                MetadataEntry(key="dc.contributor.author", value="Jane Q. Author"),
+            ]
+        )
         response = item.post(test_client, "72dfcada-de27-4ce7-99cc-68266ebfd00c").json()
-        assert response["handle"] == "1721.1/131167"
-        assert response["lastModified"] == "Fri Aug 27 13:42:16 UTC 2021"
-        assert response["link"] == "/rest/items/b3bc3232-a1ff-49ec-b816-aa8ebde60258"
+        assert response["handle"] == "1721.1/131170"
+        assert response["lastModified"] == "Tue Aug 31 19:48:50 UTC 2021"
+        assert response["link"] == "/rest/items/2a8eed3e-82d8-4d78-b718-6fe1e1a8f822"
         assert response["name"] == "Test Item"
         assert response["type"] == "item"
-        assert response["uuid"] == "b3bc3232-a1ff-49ec-b816-aa8ebde60258"
+        assert response["uuid"] == "2a8eed3e-82d8-4d78-b718-6fe1e1a8f822"
 
 
 def test_item_post_to_nonexistent_collection_raises_error(my_vcr, test_client):
@@ -41,10 +46,10 @@ def test_metadata_entry_instantiates_with_expected_values():
     assert metadata_entry.language is None
 
 
-def test_metadata_entry_to_json():
+def test_metadata_entry_to_dict():
     metadata_entry = MetadataEntry("dc.fieldname", "field value")
-    metadata_entry_json = metadata_entry.to_json()
-    assert metadata_entry_json == '{"key": "dc.fieldname", "value": "field value"}'
+    metadata_entry_dict = metadata_entry.to_dict()
+    assert metadata_entry_dict == {"key": "dc.fieldname", "value": "field value"}
 
 
 def test_metadata_entry_from_dict():
