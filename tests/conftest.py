@@ -7,6 +7,8 @@ import pytest
 import vcr
 from dotenv import load_dotenv
 
+from dspace.client import DSpaceClient
+
 load_dotenv()
 
 
@@ -23,6 +25,14 @@ def my_vcr():
         filter_headers=[("Cookie", "JSESSIONID=sessioncookie")],
     )
     return my_vcr
+
+
+@pytest.fixture
+def test_client(my_vcr, vcr_env):
+    with my_vcr.use_cassette("tests/vcr_cassettes/client/login.yaml"):
+        client = DSpaceClient(vcr_env["url"])
+        client.login(vcr_env["email"], vcr_env["password"])
+        return client
 
 
 @pytest.fixture
@@ -52,7 +62,7 @@ def vcr_scrub_request(request):
 
 def vcr_scrub_response(response):
     """Replaces the response session cookie and any user data in the response body with
-    fake data"""
+    fake data. Also replaces response body content that isn't needed for testing."""
     if "Set-Cookie" in response["headers"]:
         response["headers"]["Set-Cookie"] = [
             "JSESSIONID=sessioncookie; Path=/rest; Secure; HttpOnly"
@@ -62,12 +72,14 @@ def vcr_scrub_response(response):
     except json.decoder.JSONDecodeError:
         pass
     else:
+        response_json.pop("introductoryText", None)
         try:
             email = response_json["email"]
-            if email is not None and email != "user@example.com":
+            if email is not None:
                 response_json["email"] = "user@example.com"
                 response_json["fullname"] = "Test User"
-                response["body"]["string"] = json.dumps(response_json)
         except (KeyError, TypeError):
             pass
+        if response_json != json.loads(response["body"]["string"]):
+            response["body"]["string"] = json.dumps(response_json)
     return response

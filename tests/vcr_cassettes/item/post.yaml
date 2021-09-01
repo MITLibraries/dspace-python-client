@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: '{"metadata": [{"key": "dc.title", "value": "Test Item"}, {"key": "dc.contributor.author",
+      "value": "Jane Q. Author"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '118'
+      Content-Type:
+      - application/json
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: POST
+    uri: https://dspace-example.com/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c/items
+  response:
+    body:
+      string: '{"uuid":"2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","name":"Test Item","handle":"1721.1/131170","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Tue
+        Aug 31 19:48:50 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","metadata":null}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '465'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 31 Aug 2021 19:48:47 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+    status:
+      code: 200
+      message: OK
+version: 1

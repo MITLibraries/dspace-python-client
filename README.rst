@@ -68,10 +68,21 @@ This project uses `vcrpy <https://vcrpy.readthedocs.io/en/latest/>`_ to create t
     TEST_DSPACE_EMAIL=<your test DSpace instance email>
     TEST_DSPACE_PASSWORD=<your test DSpace instance password>
 
-2. Run ``make test`` to run the tests. This will run all tests with API calls against *your real* DSpace test instance and record the requests/responses as cassettes.
+2. Delete any test cassettes you want to replace. VCR is set to run once, meaning it will not overwrite existing cassettes.
 
-3. Review new cassettes to make sure no sensitive data has been recorded. If it has, add to the vcr functions in ``conftest.py`` to scrub the sensitive data and rerun ``make test`` to confirm.
+3. If the tests you want to create cassettes for use the ``test_client`` fixture, you will need to update it. In ``tests/conftest.py``, comment out the ``with my_vcr.use_cassette(...`` line of the ``test_client`` fixture and adjust the indenting so the whole fixture function looks like this::
 
-4. *VERY IMPORTANT*: comment out the ``DSPACE_PYTHON_CLIENT_ENV`` variable in your .env file. This ensures that future local test runs use the cassettes instead of making calls to the real DSpace API.
+    @pytest.fixture
+    def test_client(my_vcr, vcr_env):
+        # with my_vcr.use_cassette("tests/vcr_cassettes/client/login.yaml"):
+        client = DSpaceClient(vcr_env["url"])
+        client.login(vcr_env["email"], vcr_env["password"])
+        return client
 
-5. Run ``make test`` again to confirm that your cassettes are working properly.
+4. Run ``make test`` to run the tests. This will run all tests with API calls against *your real* DSpace test instance and record the requests/responses as cassettes.
+
+5. Review new cassettes to make sure no sensitive data has been recorded. If it has, add to the vcr functions in ``conftest.py`` to scrub the sensitive data and rerun ``make test`` to confirm.
+
+6. *VERY IMPORTANT*: comment out the ``DSPACE_PYTHON_CLIENT_ENV`` variable in your .env file. And reset the `test_client` fixture to its previous state. This ensures that future local test runs use the cassettes instead of making calls to the real DSpace API.
+
+7. Run ``make test`` again to confirm that your cassettes are working properly.

@@ -12,6 +12,14 @@ dspace.client module
    :undoc-members:
    :show-inheritance:
 
+dspace.item module
+------------------
+
+.. automodule:: dspace.item
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
