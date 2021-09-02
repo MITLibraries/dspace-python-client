@@ -21,8 +21,8 @@ interactions:
     uri: https://dspace-example.com/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c/items
   response:
     body:
-      string: '{"uuid":"2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","name":"Test Item","handle":"1721.1/131170","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Tue
-        Aug 31 19:48:50 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/2a8eed3e-82d8-4d78-b718-6fe1e1a8f822","metadata":null}'
+      string: '{"uuid":"7e48085d-1cdf-4b37-8d56-ae44683b5d9a","name":"Test Item","handle":"1721.1/131195","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Thu
+        Sep 02 14:57:55 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/7e48085d-1cdf-4b37-8d56-ae44683b5d9a","metadata":null}'
     headers:
       Connection:
       - close
@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 31 Aug 2021 19:48:47 GMT
+      - Thu, 02 Sep 2021 14:57:52 GMT
       Strict-Transport-Security:
       - max-age=63072000
     status:

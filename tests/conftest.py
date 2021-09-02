@@ -36,6 +36,16 @@ def test_client(my_vcr, vcr_env):
 
 
 @pytest.fixture
+def test_file_path_01():
+    return os.path.abspath("tests/fixtures/test-file-01.pdf")
+
+
+@pytest.fixture
+def test_file_path_02():
+    return os.path.abspath("tests/fixtures/test-file-02.txt")
+
+
+@pytest.fixture
 def vcr_env():
     if os.getenv("DSPACE_PYTHON_CLIENT_ENV") == "vcr_create_cassettes":
         env = {
