@@ -6,8 +6,8 @@ with functions for interacting with the DSpace REST API "/bitstreams" endpoint.
 """
 from typing import Optional
 
+import smart_open
 from requests import Response
-from smart_open import open
 
 from dspace.client import DSpaceClient
 from dspace.errors import MissingFilePathError
@@ -48,8 +48,9 @@ class Bitstream:
 
         Requires either the `item_handle` or the `item_uuid`, but not both. If
         both are passed, defaults to using the UUID. The smart_open library
-        <https://pypi.org/project/smart-open/> replaces the standard open
-        function to stream local or remote files for the POST request.
+        `smart_open library <https://pypi.org/project/smart-open/>`_ replaces
+        the standard open function to stream local or remote files for the POST
+        request.
 
         Args:
             client: An authenticated instance of the :class:`DSpaceClient` class
@@ -73,5 +74,5 @@ class Bitstream:
         item_id = select_identifier(client, item_handle, item_uuid)
         endpoint = f"/items/{item_id}/bitstreams"
         params = {"name": self.name, "description": self.description}
-        data = open(self.file_path, "rb")
+        data = smart_open.open(self.file_path, "rb")
         return client.post(endpoint, data=data, params=params)
