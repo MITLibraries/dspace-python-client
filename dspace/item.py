@@ -12,7 +12,9 @@ from typing import Dict, List, Optional
 import structlog
 from requests import Response
 
+from dspace.bitstream import Bitstream
 from dspace.client import DSpaceClient
+from dspace.utils import select_identifier
 
 logger = structlog.get_logger(__name__)
 
@@ -21,11 +23,11 @@ class Item:
     """Class representing a DSpace Item object and its associated API calls.
 
     Args:
-        bitstreams: Bitstream objects to associate with the item
+        bitstreams: :class:`Bitstream` objects to associate with the item
         metadata: :class:`MetadataEntry` objects to associate with the item
 
     Attributes:
-        bitstreams (list): List of Bitstream objects belonging to the item
+        bitstreams (list): List of :class:`Bitstream` objects belonging to the item
         metadata (list of :obj:`MetadataEntry`): List of
             :class:`MetadataEntry` objects representing the item's metadata
 
@@ -33,29 +35,41 @@ class Item:
 
     def __init__(
         self,
-        bitstreams: Optional[List] = None,
+        bitstreams: Optional[List[Bitstream]] = None,
         metadata: Optional[List[MetadataEntry]] = None,
     ):
         self.bitstreams = bitstreams or []
         self.metadata = metadata or []
 
-    def post(self, client: DSpaceClient, collection_uuid: str) -> Response:
-        """Post item to a collection and return the response
+    def post(
+        self,
+        client: DSpaceClient,
+        collection_handle: Optional[str] = None,
+        collection_uuid: Optional[str] = None,
+    ) -> Response:
+        """Post item to a collection and return the response.
+
+        Requires either the `collection_handle` or the `collection_uuid`, but not both.
+        If both are passed, defaults to using the UUID.
 
         Args:
             client: An authenticated instance of the :class:`DSpaceClient` class
-            collection_id: The UUID (not the handle) of the DSpace collection to post
+            collection_handle: The handle of an existing collection in DSpace to post
                 the item to
+            collection_uuid: The UUID of an existing collection in DSpace to post the
+                item to
 
         Returns:
             :class:`requests.Response` object
 
         Raises:
             :class:`requests.HTTPError`: 404 Not Found if no collection matching
-                provided UUID
+                provided handle/UUID
+            MissingIdentifierError: if neither `collection_handle` nor `collection_uuid`
+                parameter is provided
         """
-
-        endpoint = f"/collections/{collection_uuid}/items"
+        collection_id = select_identifier(client, collection_handle, collection_uuid)
+        endpoint = f"/collections/{collection_id}/items"
         metadata = {"metadata": [m.to_dict() for m in self.metadata]}
         logger.debug(
             f"Posting new item to {client.base_url}{endpoint} with metadata "

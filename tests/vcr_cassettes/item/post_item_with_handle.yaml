@@ -1,0 +1,77 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: GET
+    uri: https://dspace-example.com/rest/handle/1721.1/130884
+  response:
+    body:
+      string: '{"uuid": "72dfcada-de27-4ce7-99cc-68266ebfd00c", "name": "Graduate
+        Theses", "handle": "1721.1/130884", "type": "collection", "expand": ["parentCommunityList",
+        "parentCommunity", "items", "license", "logo", "all"], "logo": null, "parentCommunity":
+        null, "parentCommunityList": [], "items": [], "license": null, "copyrightText":
+        "", "shortDescription": "", "sidebarText": "", "numberItems": 31450, "link":
+        "/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c"}'
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 02 Sep 2021 14:57:48 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"metadata": [{"key": "dc.title", "value": "Test Item"}, {"key": "dc.contributor.author",
+      "value": "Jane Q. Author"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '118'
+      Content-Type:
+      - application/json
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: POST
+    uri: https://dspace-example.com/rest/collections/72dfcada-de27-4ce7-99cc-68266ebfd00c/items
+  response:
+    body:
+      string: '{"uuid":"229451b3-e943-46e8-a27e-f45d5c8aa0ec","name":"Test Item","handle":"1721.1/131194","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"Thu
+        Sep 02 14:57:52 UTC 2021","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/229451b3-e943-46e8-a27e-f45d5c8aa0ec","metadata":null}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '465'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 02 Sep 2021 14:57:49 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+    status:
+      code: 200
+      message: OK
+version: 1
