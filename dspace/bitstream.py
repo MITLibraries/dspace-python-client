@@ -67,9 +67,8 @@ class Bitstream:
         """
         if not self.file_path:
             raise MissingFilePathError(f"bitstream.post({client}, {item_uuid})")
-        endpoint = (
-            f"/items/{select_identifier(client, item_handle, item_uuid)}/bitstreams"
-        )
+        item_id = select_identifier(client, item_handle, item_uuid)
+        endpoint = f"/items/{item_id}/bitstreams"
         params = {"name": self.name, "description": self.description}
         data = stream_file_in_chunks(self.file_path)
         return client.post(endpoint, data=data, params=params)

@@ -68,8 +68,8 @@ class Item:
             MissingIdentifierError: if neither `collection_handle` nor `collection_uuid`
                 parameter is provided
         """
-        id = select_identifier(client, collection_handle, collection_uuid)
-        endpoint = f"/collections/{id}/items"
+        collection_id = select_identifier(client, collection_handle, collection_uuid)
+        endpoint = f"/collections/{collection_id}/items"
         metadata = {"metadata": [m.to_dict() for m in self.metadata]}
         logger.debug(
             f"Posting new item to {client.base_url}{endpoint} with metadata "
