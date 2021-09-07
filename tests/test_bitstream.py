@@ -6,6 +6,23 @@ from dspace.bitstream import Bitstream
 from dspace.errors import MissingFilePathError, MissingIdentifierError
 
 
+def test_bitstream_post_success_remote_file(my_vcr, test_client, mocked_s3):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/bitstream/post_bitstream_success_remote_file.yaml",
+        filter_post_data_parameters=None,
+    ):
+        bitstream = Bitstream(
+            name="test-file-03.txt",
+            description="A test TXT file",
+            file_path="s3://test-bucket/path/file/test-file-03.txt",
+        )
+        response = bitstream.post(test_client, item_handle="1721.1/131167")
+        assert response.status_code == 200
+        assert response.json()["description"] == "A test TXT file"
+        assert response.json()["name"] == "test-file-03.txt"
+        assert response.json()["type"] == "bitstream"
+
+
 def test_bitstream_post_success_with_handle(my_vcr, test_client, test_file_path_01):
     with my_vcr.use_cassette(
         "tests/vcr_cassettes/bitstream/post_bitstream_with_handle.yaml",

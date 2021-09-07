@@ -3,13 +3,36 @@ import json
 import os
 import urllib
 
+import boto3
 import pytest
 import vcr
 from dotenv import load_dotenv
+from moto import mock_s3
 
 from dspace.client import DSpaceClient
 
 load_dotenv()
+
+
+@pytest.fixture(scope="function")
+def aws_credentials():
+    os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+    os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+    os.environ["AWS_SECURITY_TOKEN"] = "testing"
+    os.environ["AWS_SESSION_TOKEN"] = "testing"
+
+
+@pytest.fixture(scope="function")
+def mocked_s3(aws_credentials):
+    with mock_s3():
+        s3 = boto3.client("s3", region_name="us-east-1")
+        s3.create_bucket(Bucket="test-bucket")
+        s3.put_object(
+            Bucket="test-bucket",
+            Key="path/file/test-file-03.txt",
+            Body="Test content",
+        )
+        yield s3
 
 
 @pytest.fixture

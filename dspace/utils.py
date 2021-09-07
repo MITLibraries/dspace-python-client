@@ -4,7 +4,7 @@
 Utility functions for the DSpace Python client library.
 """
 
-from typing import Generator, Optional
+from typing import Optional
 
 from dspace.client import DSpaceClient
 from dspace.errors import MissingIdentifierError
@@ -35,27 +35,3 @@ def select_identifier(
         return uuid
     else:
         raise MissingIdentifierError(f"bitstream.post({client}, {uuid})")
-
-
-def stream_file_in_chunks(
-    file_path, chunk_size: int = 1024
-) -> Generator[bytes, None, None]:
-    """Read and stream a file one chunk at a time.
-
-    Args:
-        chunk_size: Size of chunks to read
-
-    Returns:
-        :class:`Generator` object of data in bytes
-    """
-    if file_path.startswith("S3://"):
-        # TODO: add S3 file streaming
-        pass
-    else:
-        file = open(file_path, "rb")
-        while True:
-            data = file.read(chunk_size)
-            if not data:
-                break
-            yield data
-        file.close()
