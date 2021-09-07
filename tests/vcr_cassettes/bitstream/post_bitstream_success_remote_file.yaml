@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: GET
+    uri: https://dspace-example.com/rest/handle/1721.1/131167
+  response:
+    body:
+      string: '{"uuid":"b3bc3232-a1ff-49ec-b816-aa8ebde60258","name":"Test Item","handle":"1721.1/131167","type":"item","expand":["metadata","parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"2021-09-02
+        15:51:12.473","parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"bitstreams":null,"archived":"true","withdrawn":"false","link":"/rest/items/b3bc3232-a1ff-49ec-b816-aa8ebde60258","metadata":null}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '460'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Sep 2021 18:24:57 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+    status:
+      code: 200
+      message: OK
+- request:
+    body: !!python/object/new:_io.BytesIO
+      state: !!python/tuple
+      - !!binary |
+        VGVzdCBjb250ZW50
+      - 0
+      - null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '12'
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: POST
+    uri: https://dspace-example.com/rest/items/b3bc3232-a1ff-49ec-b816-aa8ebde60258/bitstreams
+  response:
+    body:
+      string: '{"uuid":"2546ae0a-152a-4e0d-ad2d-28f62f301529","name":"test-file-03.txt","handle":null,"type":"bitstream","expand":["parent","policies","all"],"bundleName":"ORIGINAL","description":"A
+        test TXT file","format":"Text","mimeType":"text/plain","sizeBytes":12,"parentObject":null,"retrieveLink":"/rest/bitstreams/2546ae0a-152a-4e0d-ad2d-28f62f301529/retrieve","checkSum":{"value":"8bfa8e0684108f419933a5995264d150","checkSumAlgorithm":"MD5"},"sequenceId":-1,"policies":null,"link":"/rest/bitstreams/2546ae0a-152a-4e0d-ad2d-28f62f301529"}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '531'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Sep 2021 18:24:57 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+    status:
+      code: 200
+      message: OK
+version: 1

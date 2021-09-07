@@ -2,7 +2,7 @@
 import pytest
 
 from dspace.errors import MissingIdentifierError
-from dspace.utils import select_identifier, stream_file_in_chunks
+from dspace.utils import select_identifier
 
 
 def test_select_identifier_with_handle(my_vcr, test_client, vcr_env):
@@ -19,9 +19,3 @@ def test_select_identifier_with_uuid(test_client):
 def test_select_identifier_without_id_raises_error(test_client):
     with pytest.raises(MissingIdentifierError):
         select_identifier(test_client, None, None)
-
-
-def test_stream_file_from_local(test_file_path_02):
-    """Tests file streaming function."""
-    contents = stream_file_in_chunks(test_file_path_02)
-    assert next(contents) == b"Just a sample text file.\n"

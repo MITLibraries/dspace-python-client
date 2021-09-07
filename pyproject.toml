@@ -9,6 +9,7 @@ python = "^3.9"
 attrs = "^21.2.0"
 requests = "^2.26.0"
 structlog = "^21.1.0"
+smart-open = {extras = ["s3"], version = "^5.2.1"}
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
@@ -23,6 +24,7 @@ Sphinx = "^4.1.2"
 sphinx-autodoc-typehints = "^1.12.0"
 sphinx-rtd-theme = "^0.5.2"
 vcrpy = "^4.1.1"
+moto = "^2.2.6"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
