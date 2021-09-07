@@ -1,4 +1,4 @@
-.PHONY: coveralls install lint sphinx test update bandit black flake isort
+.PHONY: coveralls install lint sphinx test update bandit black flake isort mypy pydocstyle
 
 help: ## Print this message
 	@awk 'BEGIN { FS = ":.*##"; print "Usage:  make <target>\n\nTargets:" } \
@@ -10,7 +10,7 @@ coveralls: test
 install: ## Install dependencies, including dev dependencies
 	poetry install
 
-lint: bandit black flake isort ## Runs all linters
+lint: bandit black flake isort mypy pydocstyle ## Runs all linters
 
 test: ## Run tests
 	poetry run pytest --cov=dspace
@@ -37,3 +37,9 @@ flake: ## Tool For Style Guide Enforcement
 
 isort: ## isort your imports, so you don't have to
 	poetry run isort . --diff
+
+mypy: ## Static type checker for Python 3 and Python 2.7
+	poetry run mypy .
+
+pydocstyle: ## Static analysis tool for checking compliance with Python docstring conventions
+	poetry run pydocstyle --convention google --add-ignore=D105,D107 dspace

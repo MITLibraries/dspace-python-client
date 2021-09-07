@@ -1,5 +1,9 @@
 # dspace/client.py
-from typing import Dict, Optional
+"""DSpace client module.
+
+This module includes a Client class for interacting with the DSpace REST API.
+"""
+from typing import Dict, Optional, Union
 
 import requests
 import structlog
@@ -85,8 +89,10 @@ class DSpaceClient:
         return response
 
     def login(self, email: str, password: str) -> None:
-        """Authenticate a user to the DSpace REST API. If authentication is successful,
-        adds an object to `self.cookies` equal to the response 'JSESSIONID' cookie.
+        """Authenticate a user to the DSpace REST API.
+
+        If authentication is successful, adds an object to `self.cookies` equal to the
+        response 'JSESSIONID' cookie.
 
         Args:
             email: The email address of the DSpace user
@@ -106,7 +112,7 @@ class DSpaceClient:
     def post(
         self,
         endpoint: str,
-        data: Optional[bytes] = None,
+        data: Optional[Union[bytes, dict]] = None,
         json: Optional[dict] = None,
         params: Optional[dict] = None,
     ) -> requests.Response:

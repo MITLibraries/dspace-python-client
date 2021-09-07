@@ -1,5 +1,5 @@
 # dspace/errors.py
-"""dspace.errors
+"""DSpace errors module.
 
 This module includes custom Error classes that may be raised by DSpace Python client
 library.
@@ -7,7 +7,7 @@ library.
 
 
 class DSpacePythonError(Exception):
-    """Base class for errors raise by the dspace-python-client library"""
+    """Base class for errors raise by the dspace-python-client library."""
 
 
 class MissingFilePathError(DSpacePythonError):
