@@ -41,6 +41,25 @@ class Item:
         self.bitstreams = bitstreams or []
         self.metadata = metadata or []
 
+    def delete(
+        self,
+        client: DSpaceClient,
+        item_uuid: str,
+    ) -> Response:
+        """Delete item and return the response.
+
+        Args:
+            client: An authenticated instance of the :class:`DSpaceClient` class
+
+        Returns:
+            :class:`requests.Response` object
+
+        Raises:
+            :class:`requests.HTTPError`: 404 Not Found if no item matching
+                provided UUID
+        """
+        return client.delete(f"/items/{item_uuid}")
+
     def post(
         self,
         client: DSpaceClient,

@@ -38,6 +38,25 @@ class Bitstream:
         self.file_path = file_path
         self.name = name
 
+    def delete(
+        self,
+        client: DSpaceClient,
+        bitstream_uuid: str,
+    ) -> Response:
+        """Delete bitstream and return the response.
+
+        Args:
+            client: An authenticated instance of the :class:`DSpaceClient` class
+
+        Returns:
+            :class:`requests.Response` object
+
+        Raises:
+            :class:`requests.HTTPError`: 404 Not Found if no bitstream matching
+                provided UUID
+        """
+        return client.delete(f"/bitstreams/{bitstream_uuid}")
+
     def post(
         self,
         client: DSpaceClient,

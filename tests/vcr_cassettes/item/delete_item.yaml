@@ -1,0 +1,36 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Cookie:
+      - JSESSIONID=sessioncookie
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+    method: DELETE
+    uri: https://dspace-example.com/rest/items/1becd094-9fe8-4625-ab55-86520441a1ca
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Date:
+      - Wed, 08 Sep 2021 13:30:31 GMT
+      Strict-Transport-Security:
+      - max-age=63072000
+    status:
+      code: 200
+      message: OK
+version: 1
