@@ -1,9 +1,5 @@
 name: Tests and linting
-on:
-  push:
-  pull_request:
-    branches:
-      - main
+on: push
 jobs:
   test:
     name: Run tests
@@ -43,3 +39,7 @@ jobs:
         run: make flake
       - name: isort
         run: make isort
+      - name: mypy
+        run: make mypy
+      - name: pydocstyle
+        run: make pydocstyle

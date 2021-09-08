@@ -6,7 +6,7 @@ from dspace.utils import select_identifier
 
 
 def test_select_identifier_with_handle(my_vcr, test_client, vcr_env):
-    with my_vcr.use_cassette("vcr_cassettes/client/get_object_by_handle.yaml"):
+    with my_vcr.use_cassette("tests/vcr_cassettes/client/get_object_by_handle.yaml"):
         id = select_identifier(test_client, handle="1721.1/130884", uuid=None)
         assert id == "72dfcada-de27-4ce7-99cc-68266ebfd00c"
 

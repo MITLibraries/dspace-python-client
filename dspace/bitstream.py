@@ -1,5 +1,5 @@
 # dspace/bitstream.py
-"""dspace.bitstream
+"""DSpace bitstream module.
 
 This module includes a Bitstream class representing DSpace Bitstream objects, along
 with functions for interacting with the DSpace REST API "/bitstreams" endpoint.
@@ -47,10 +47,10 @@ class Bitstream:
         """Post bitstream to an item and return the response.
 
         Requires either the `item_handle` or the `item_uuid`, but not both. If
-        both are passed, defaults to using the UUID. The smart_open library
-        `smart_open library <https://pypi.org/project/smart-open/>`_ replaces
-        the standard open function to stream local or remote files for the POST
-        request.
+        both are passed, defaults to using the UUID.
+
+        The `smart_open library <https://pypi.org/project/smart-open/>`_ replaces the
+        standard open function to stream local or remote files for the POST request.
 
         Args:
             client: An authenticated instance of the :class:`DSpaceClient` class

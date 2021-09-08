@@ -1,5 +1,5 @@
 # dspace.utils.py
-"""dspace.utils
+"""DSpace utils module.
 
 Utility functions for the DSpace Python client library.
 """
@@ -31,7 +31,7 @@ def select_identifier(
     if uuid:
         return uuid
     elif handle:
-        uuid = client.get_object_by_handle(handle).json()["uuid"]
-        return uuid
+        retrieved_uuid = client.get_object_by_handle(handle).json()["uuid"]
+        return retrieved_uuid
     else:
         raise MissingIdentifierError(f"bitstream.post({client}, {uuid})")

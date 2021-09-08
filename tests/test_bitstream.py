@@ -6,7 +6,7 @@ from dspace.bitstream import Bitstream
 from dspace.errors import MissingFilePathError, MissingIdentifierError
 
 
-def test_bitstream_post_success_remote_file(my_vcr, test_client, mocked_s3):
+def test_bitstream_post_success_remote_file(mocked_s3, my_vcr, test_client):
     with my_vcr.use_cassette(
         "tests/vcr_cassettes/bitstream/post_bitstream_success_remote_file.yaml",
         filter_post_data_parameters=None,

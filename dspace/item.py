@@ -1,5 +1,5 @@
 # dspace/item.py
-"""dspace.item
+"""DSpace item module.
 
 This module includes classes representing DSpace Item and MetadataEntry objects, along
 with functions for interacting with the DSpace REST API "/items" endpoint.
@@ -79,8 +79,10 @@ class Item:
 
 
 class MetadataEntry:
-    """Class representing a `DSpace MetadataEntry object <https://wiki.lyrasis.org/
-    display/DSDOC6x/REST+API#RESTAPI-MetadataEntryObject>`_.
+    """Class representing a `DSpace MetadataEntry object`_.
+
+    .. _DSpace MetadataEntry object: https://wiki.lyrasis.org/display/DSDOC6x/\
+    REST+API#RESTAPI-MetadataEntryObject>`
 
     Args:
         key: DSpace metadata field name in qualified Dublin Core format, e.g.
@@ -100,7 +102,7 @@ class MetadataEntry:
         self.language = language
 
     def to_dict(self) -> dict:
-        """Method to convert the MetadataEntry object to a dict
+        """Method to convert the MetadataEntry object to a dict.
 
         Returns:
             Dict representation of the metadata entry
@@ -109,8 +111,7 @@ class MetadataEntry:
 
     @classmethod
     def from_dict(cls, entry: Dict[str, str]) -> MetadataEntry:
-        """
-        Class method to create a MetadataEntry object from a dict.
+        """Class method to create a MetadataEntry object from a dict.
 
         Args:
             entry: A dict representing a DSpace metadata field name, value, and
