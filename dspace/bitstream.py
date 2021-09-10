@@ -4,6 +4,7 @@
 This module includes a Bitstream class representing DSpace Bitstream objects, along
 with functions for interacting with the DSpace REST API "/bitstreams" endpoint.
 """
+import logging
 from typing import Optional
 
 import smart_open
@@ -12,6 +13,8 @@ from requests import Response
 from dspace.client import DSpaceClient
 from dspace.errors import MissingFilePathError
 from dspace.utils import select_identifier
+
+logger = logging.getLogger(__name__)
 
 
 class Bitstream:

@@ -7,16 +7,16 @@ with functions for interacting with the DSpace REST API "/items" endpoint.
 
 from __future__ import annotations
 
+import logging
 from typing import Dict, List, Optional
 
-import structlog
 from requests import Response
 
 from dspace.bitstream import Bitstream
 from dspace.client import DSpaceClient
 from dspace.utils import select_identifier
 
-logger = structlog.get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class Item:

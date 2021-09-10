@@ -9,7 +9,6 @@ python = "^3.9"
 attrs = "^21.2.0"
 requests = "^2.26.0"
 smart-open = {extras = ["s3"], version = "^5.2.1"}
-structlog = "^21.1.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"

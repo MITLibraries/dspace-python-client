@@ -4,10 +4,13 @@
 Utility functions for the DSpace Python client library.
 """
 
+import logging
 from typing import Optional
 
 from dspace.client import DSpaceClient
 from dspace.errors import MissingIdentifierError
+
+logger = logging.getLogger(__name__)
 
 
 def select_identifier(

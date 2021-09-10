@@ -3,12 +3,12 @@
 
 This module includes a Client class for interacting with the DSpace REST API.
 """
+import logging
 from typing import Dict, Optional, Union
 
 import requests
-import structlog
 
-logger = structlog.get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class DSpaceClient:
