@@ -20,6 +20,14 @@ def test_client_repr():
     )
 
 
+def test_client_delete_method(my_vcr, vcr_env):
+    with my_vcr.use_cassette("tests/vcr_cassettes/bitstream/delete_bitstream.yaml"):
+        client = DSpaceClient(vcr_env["url"])
+        response = client.delete("/bitstreams/9df9382c-d332-4ddc-a77a-e8e6e3f1bcff")
+        assert isinstance(response, requests.Response)
+        assert response.status_code == 200
+
+
 def test_client_get_method(my_vcr, vcr_env):
     with my_vcr.use_cassette("tests/vcr_cassettes/client/status.yaml"):
         client = DSpaceClient(vcr_env["url"])

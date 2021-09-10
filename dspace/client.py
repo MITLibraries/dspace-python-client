@@ -40,6 +40,32 @@ class DSpaceClient:
             f"accept_header='{self.headers['accept']}')"
         )
 
+    def delete(self, endpoint: str) -> requests.Response:
+        """Send a DELETE request to the specified endpoint and return the result.
+
+        This method is internal to the library (although not private to this class)
+        and should generally not be called directly. It is used by other classes to send
+        DELETE requests using the client's stored authentication cookie and headers.
+
+        Args:
+            endpoint: The DSPace REST endpoint for object to delete, e.g. "/items/abc123"
+
+        Returns:
+            :class:`requests.Response` object
+
+        Raises:
+            :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
+                5xx
+            :class:`requests.exceptions.Timeout`: if server takes more than 5 seconds to
+                respond
+        """
+        url = self.base_url + endpoint
+        response = requests.delete(
+            url, cookies=self.cookies, headers=self.headers, timeout=5.0
+        )
+        response.raise_for_status()
+        return response
+
     def get(self, endpoint: str, params: Optional[dict] = None) -> requests.Response:
         """Send a GET request to the specified endpoint and return the result.
 

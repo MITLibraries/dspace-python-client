@@ -6,7 +6,28 @@ from dspace.bitstream import Bitstream
 from dspace.errors import MissingFilePathError, MissingIdentifierError
 
 
-def test_bitstream_post_success_remote_file(mocked_s3, my_vcr, test_client):
+def test_bitstream_delete(my_vcr, test_client):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/bitstream/delete_bitstream.yaml",
+        filter_post_data_parameters=None,
+    ):
+        bitstream = Bitstream()
+        response = bitstream.delete(test_client, "9df9382c-d332-4ddc-a77a-e8e6e3f1bcff")
+        assert response.status_code == 200
+
+
+def test_bitstream_delete_nonexistent_bitstream(my_vcr, test_client):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/bitstream/delete_nonexistent_bitstream.yaml",
+        filter_post_data_parameters=None,
+    ):
+        with pytest.raises(requests.HTTPError):
+            bitstream = Bitstream()
+            response = bitstream.delete(test_client, "5-7-4-b-0")
+            assert "404" in response.text
+
+
+def test_bitstream_post_success_remote_file(my_vcr, test_client, mocked_s3):
     with my_vcr.use_cassette(
         "tests/vcr_cassettes/bitstream/post_bitstream_success_remote_file.yaml",
         filter_post_data_parameters=None,

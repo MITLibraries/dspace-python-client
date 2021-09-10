@@ -6,6 +6,27 @@ from dspace.errors import MissingIdentifierError
 from dspace.item import Item, MetadataEntry
 
 
+def test_item_delete(my_vcr, test_client):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/item/delete_item.yaml",
+        filter_post_data_parameters=None,
+    ):
+        item = Item()
+        response = item.delete(test_client, "1becd094-9fe8-4625-ab55-86520441a1ca")
+        assert response.status_code == 200
+
+
+def test_item_delete_nonexistent_item(my_vcr, test_client):
+    with my_vcr.use_cassette(
+        "tests/vcr_cassettes/item/delete_nonexistent_item.yaml",
+        filter_post_data_parameters=None,
+    ):
+        with pytest.raises(requests.HTTPError):
+            item = Item()
+            response = item.delete(test_client, "5-7-4-b-0")
+            assert "404" in response.text
+
+
 def test_item_instantiates_with_expected_values():
     title = MetadataEntry(key="dc.title", value="Test Item")
     item = Item(metadata=[title])
