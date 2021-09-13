@@ -33,7 +33,8 @@ class Bitstream:
         format (Optional[str]): The DSpace-identified file format of the bitstream
         expand (List[str]: The expand options for the DSpace REST object
         file_path (Optional[str]): File path to the bitstream. Required to post
-            bitstream to DSpace
+            bitstream to DSpace. Not part of the DSpace object model, but necessary to
+            associate a file with the bitstream
         link (Optional[str]): The DSpace REST API path for the bitstream
         mimeType (Optional[str]): The DSpace-identified mimetype of the bitstream
         name (Optional[str]): The name of the bitstream in DSpace
