@@ -4,6 +4,9 @@
 This module includes custom Error classes that may be raised by DSpace Python client
 library.
 """
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DSpacePythonError(Exception):

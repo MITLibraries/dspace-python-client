@@ -4,16 +4,19 @@
 Utility functions for the DSpace Python client library.
 """
 
+import logging
 from typing import Optional
 
 from dspace.client import DSpaceClient
 from dspace.errors import MissingIdentifierError
 
+logger = logging.getLogger(__name__)
+
 
 def select_identifier(
     client: DSpaceClient, handle: Optional[str], uuid: Optional[str]
 ) -> str:
-    """Return the uuid of an item given a handle, a uuid, or both.
+    """Return the uuid of a DSpace object given a handle, a uuid, or both.
 
     Args:
         client: Authenticated instance of :class:`DSpaceClient` class
