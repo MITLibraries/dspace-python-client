@@ -2,8 +2,8 @@
 """DSpace Python Client package."""
 import logging
 
-from dspace.bitstream import Bitstream
-from dspace.client import DSpaceClient
-from dspace.item import Item, MetadataEntry
+from dspace.bitstream import Bitstream  # noqa
+from dspace.client import DSpaceClient  # noqa
+from dspace.item import Item, MetadataEntry  # noqa
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
