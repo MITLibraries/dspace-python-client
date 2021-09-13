@@ -48,7 +48,8 @@ class DSpaceClient:
         DELETE requests using the client's stored authentication cookie and headers.
 
         Args:
-            endpoint: The DSPace REST endpoint for object to delete, e.g. "/items/abc123"
+            endpoint: The DSPace REST endpoint for the object to delete, e.g.
+                "/items/7c8e7bbc-e36b-4194-87e5-5347e3a69a57"
 
         Returns:
             :class:`requests.Response` object
@@ -61,7 +62,7 @@ class DSpaceClient:
         """
         url = self.base_url + endpoint
         response = requests.delete(
-            url, cookies=self.cookies, headers=self.headers, timeout=5.0
+            url, cookies=self.cookies, headers=self.headers, timeout=15.0
         )
         response.raise_for_status()
         return response

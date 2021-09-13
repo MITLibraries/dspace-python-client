@@ -10,8 +10,6 @@ from __future__ import annotations
 import logging
 from typing import Dict, List, Optional
 
-from requests import Response
-
 from dspace.bitstream import Bitstream
 from dspace.client import DSpaceClient
 from dspace.utils import select_identifier
@@ -27,10 +25,24 @@ class Item:
         metadata: :class:`MetadataEntry` objects to associate with the item
 
     Attributes:
-        bitstreams (list): List of :class:`Bitstream` objects belonging to the item
-        metadata (list of :obj:`MetadataEntry`): List of
+        archived (Optional[str]): Item archived status in DSpace ("true" or "false")
+        bitstreams (Optional[List[:obj:`Bitstream`]]): List of :class:`Bitstream`
+            objects belonging to the item
+        expand (List[str]): The expand options for the DSpace REST object
+        handle (Optional[str]): The handle of the item in DSpace
+        lastModified (Optional[str]): Timestamp the item was last modified in DSpace
+        link (Optional[str]): The DSpace REST API path for the item
+        metadata (Optional[List:obj:`MetadataEntry`]]): List of
             :class:`MetadataEntry` objects representing the item's metadata
-
+        name (Optional[str]): The name of the item in DSpace
+        parentCollection (Optional[str]): Parent collection of the item in DSpace
+        parentCollectionList (Optiona[List[str]]): List of parent collections of the
+            item in DSpace
+        parentCommunityList (Optional[List[str]]): List of parent communities of the
+            item in DSpace
+        type (str): The DSpace object type
+        uuid (Optional[str]): The internal UUID of the item in DSpace
+        withdrawn (Optional[str]): Item withdrawn status in DSpace ("true" or "false")
     """
 
     def __init__(
@@ -41,32 +53,57 @@ class Item:
         self.bitstreams = bitstreams or []
         self.metadata = metadata or []
 
-    def delete(
-        self,
-        client: DSpaceClient,
-        item_uuid: str,
-    ) -> Response:
-        """Delete item and return the response.
+        self.archived = None
+        self.expand = [
+            "metadata",
+            "parentCollection",
+            "parentCollectionList",
+            "parentCommunityList",
+            "bitstreams",
+            "all",
+        ]
+        self.handle = None
+        self.lastModified = None
+        self.link = None
+        self.name = None
+        self.parentCollection = None
+        self.parentCollectionList = None
+        self.parentCommunityList = None
+        self.type = "item"
+        self.uuid = None
+        self.withdrawn = None
+
+    def delete(self, client: DSpaceClient) -> None:
+        """Delete item from DSpace and unset relevant item attributes.
 
         Args:
             client: An authenticated instance of the :class:`DSpaceClient` class
-
-        Returns:
-            :class:`requests.Response` object
 
         Raises:
             :class:`requests.HTTPError`: 404 Not Found if no item matching
                 provided UUID
         """
-        return client.delete(f"/items/{item_uuid}")
+        logger.debug("Deleting item with uuid %s from %s", self.uuid, client.base_url)
+        response = client.delete(f"/items/{self.uuid}")
+        logger.debug("Delete response: %s", response)
+        self.archived = None
+        self.handle = None
+        self.lastModified = None
+        self.link = None
+        self.name = None
+        self.parentCollection = None
+        self.parentCollectionList = None
+        self.parentCommunityList = None
+        self.uuid = None
+        self.withdrawn = None
 
     def post(
         self,
         client: DSpaceClient,
         collection_handle: Optional[str] = None,
         collection_uuid: Optional[str] = None,
-    ) -> Response:
-        """Post item to a collection and return the response.
+    ) -> None:
+        """Post item to a collection and set item attributes to response object values.
 
         Requires either the `collection_handle` or the `collection_uuid`, but not both.
         If both are passed, defaults to using the UUID.
@@ -78,9 +115,6 @@ class Item:
             collection_uuid: The UUID of an existing collection in DSpace to post the
                 item to
 
-        Returns:
-            :class:`requests.Response` object
-
         Raises:
             :class:`requests.HTTPError`: 404 Not Found if no collection matching
                 provided handle/UUID
@@ -91,10 +125,22 @@ class Item:
         endpoint = f"/collections/{collection_id}/items"
         metadata = {"metadata": [m.to_dict() for m in self.metadata]}
         logger.debug(
-            f"Posting new item to {client.base_url}{endpoint} with metadata "
-            f"{metadata}"
+            "Posting new item to %s with metadata %s",
+            client.base_url + endpoint,
+            metadata,
         )
-        return client.post(endpoint, json=metadata)
+        response = client.post(endpoint, json=metadata).json()
+        logger.debug("Post response: %s", response)
+        self.archived = response["archived"]
+        self.handle = response["handle"]
+        self.lastModified = response["lastModified"]
+        self.link = response["link"]
+        self.name = response["name"]
+        self.parentCollection = response["parentCollection"]
+        self.parentCollectionList = response["parentCollectionList"]
+        self.parentCommunityList = response["parentCommunityList"]
+        self.uuid = response["uuid"]
+        self.withdrawn = response["withdrawn"]
 
 
 class MetadataEntry:
@@ -112,7 +158,7 @@ class MetadataEntry:
     Attributes:
         key (str): Name of the metadata entry
         value (str): Value of the metadata entry
-        language (str, optional): Language of the metadata entry
+        language (Optional[str]): Language of the metadata entry
     """
 
     def __init__(self, key: str, value: str, language: Optional[str] = None):
