@@ -3,10 +3,12 @@ name = "dspace-python-client"
 version = "0.1.0"
 description = "Python Client library for working with the DSpace API"
 authors = ["Helen Bailey <hbailey@mit.edu>", "Eric Hanson <ehanson@mit.edu>"]
+packages = [
+    { include = "dspace" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-attrs = "^21.2.0"
 requests = "^2.26.0"
 smart-open = {extras = ["s3"], version = "^5.2.1"}
 
