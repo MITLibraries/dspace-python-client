@@ -4,6 +4,10 @@ help: ## Print this message
 	@awk 'BEGIN { FS = ":.*##"; print "Usage:  make <target>\n\nTargets:" } \
 /^[-_[:alpha:]]+:.?*##/ { printf "  %-15s%s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
+build:
+	rm -r dist
+	poetry build
+
 coveralls: test
 	poetry run coveralls
 
