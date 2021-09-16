@@ -8,6 +8,12 @@ A Python client library for working with the DSpace API. This was written agains
 Usage
 -----
 
+To install this library with `pip`::
+  pip install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace"
+
+To install this library with `pipenv`::
+  pipenv install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace"
+
 To authenticate the DSpace client::
 
   from dspace.bitstream import Bitstream
@@ -21,7 +27,7 @@ To post an item and associated bitstream with an authenticated client::
   
   title = MetadataEntry(key="dc.title", value="Test Item")
   item = Item(metadata=[title])
-  item.post(client, collection_handle=response["uuid"])
+  item.post(client, collection_handle=<valid DSpace handle e.g. "1234.5/6789">)
 
   bitstream = Bitstream(name="test.txt", file_path="test.txt")
   bitstream.post(client, item_uuid=item.uuid)
