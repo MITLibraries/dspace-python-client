@@ -9,10 +9,12 @@ Usage
 -----
 
 To install this library with `pip`::
-  pip install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace"
+
+  pip install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace-python-client"
 
 To install this library with `pipenv`::
-  pipenv install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace"
+
+  pipenv install "git+https://github.com/mitlibraries/dspace-python-client.git@<release-version-number>#egg=dspace-python-client"
 
 To authenticate the DSpace client::
 
