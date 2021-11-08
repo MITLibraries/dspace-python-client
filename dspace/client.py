@@ -18,26 +18,39 @@ class DSpaceClient:
         base_url: The base url of the DSpace API
         accept_header: The response type to use in the requests "accept" header -- one
             of "application/json" or "application/xml", defaults to "application/json"
+        timeout: The `timeout`_, in seconds, to use for all requests sent to the DSpace
+            API, defaults to 3.0
 
     Attributes:
         base_url: The base url of the DSpace API
         cookies: Cookies for use in client requests
         headers: Headers for use in client requests
+        timeout: Timeout value for use in client requests
+
+    .. _timeout: https://docs.python-requests.org/en/latest/user/quickstart/#timeouts
     """
 
-    def __init__(self, base_url: str, accept_header: str = "application/json"):
+    def __init__(
+        self,
+        base_url: str,
+        accept_header: str = "application/json",
+        timeout: float = 3.0,
+    ):
         self.base_url: str = base_url.rstrip("/")
         self.headers: Dict[str, str] = {"accept": accept_header}
+        self.timeout: float = timeout
         self.cookies: dict = {}
         logger.debug(
             f"Client initialized with params base_url={self.base_url}, "
-            f"accept_header={self.headers}"
+            f"accept_header={self.headers}, "
+            f"timeout={self.timeout}"
         )
 
     def __repr__(self):
         return (
             f"DSpaceClient(base_url='{self.base_url}', "
-            f"accept_header='{self.headers['accept']}')"
+            f"accept_header='{self.headers['accept']}', "
+            f"timeout={self.timeout})"
         )
 
     def delete(self, endpoint: str) -> requests.Response:
@@ -57,12 +70,12 @@ class DSpaceClient:
         Raises:
             :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
                 5xx
-            :class:`requests.exceptions.Timeout`: if server takes more than 5 seconds to
-                respond
+            :class:`requests.exceptions.Timeout`: if server takes longer than the
+                client's timeout value to respond
         """
         url = self.base_url + endpoint
         response = requests.delete(
-            url, cookies=self.cookies, headers=self.headers, timeout=15.0
+            url, cookies=self.cookies, headers=self.headers, timeout=self.timeout
         )
         response.raise_for_status()
         return response
@@ -84,12 +97,16 @@ class DSpaceClient:
         Raises:
             :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
                 5xx
-            :class:`requests.exceptions.Timeout`: if server takes more than 5 seconds to
-                respond
+            :class:`requests.exceptions.Timeout`: if server takes longer than the
+                client's timeout value to respond
         """
         url = self.base_url + endpoint
         response = requests.get(
-            url, cookies=self.cookies, headers=self.headers, params=params, timeout=5.0
+            url,
+            cookies=self.cookies,
+            headers=self.headers,
+            params=params,
+            timeout=self.timeout,
         )
         response.raise_for_status()
         return response
@@ -161,8 +178,8 @@ class DSpaceClient:
         Raises:
             :class:`requests.exceptions.HTTPError`: if response status code is 4xx or
                 5xx
-            :class:`requests.exceptions.Timeout`: if server takes more than 15 seconds
-                to respond
+            :class:`requests.exceptions.Timeout`: if server takes longer than the
+                client's timeout value to respond
         """
         url = self.base_url + endpoint
         response = requests.post(
@@ -172,7 +189,7 @@ class DSpaceClient:
             headers=self.headers,
             json=json,
             params=params,
-            timeout=15.0,
+            timeout=self.timeout,
         )
         response.raise_for_status()
         return response

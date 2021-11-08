@@ -10,13 +10,15 @@ def test_client_instantiates_with_expected_values():
     client = DSpaceClient("https://dspace-example.com/rest")
     assert client.headers["accept"] == "application/json"
     assert client.base_url == "https://dspace-example.com/rest"
+    assert client.timeout == 3.0
 
 
 def test_client_repr():
     client = DSpaceClient("https://dspace-example.com/rest")
     assert str(client) == (
         "DSpaceClient(base_url='https://dspace-example.com/rest', "
-        "accept_header='application/json')"
+        "accept_header='application/json', "
+        "timeout=3.0)"
     )
 
 
