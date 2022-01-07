@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>dspace package &mdash; dspace-python-client  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="dspace" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dspace-python-client
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dspace package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace.bitstream">dspace.bitstream module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace.client">dspace.client module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace.errors">dspace.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace.item">dspace.item module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace.utils">dspace.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dspace">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dspace-python-client</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">dspace</a> &raquo;</li>
+        
+      <li>dspace package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/dspace.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dspace-package">
+<h1>dspace package<a class="headerlink" href="#dspace-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dspace.bitstream">
+<span id="dspace-bitstream-module"></span><h2>dspace.bitstream module<a class="headerlink" href="#module-dspace.bitstream" title="Permalink to this headline">¶</a></h2>
+<p>DSpace bitstream module.</p>
+<p>This module includes a Bitstream class representing DSpace Bitstream objects, along
+with functions for interacting with the DSpace REST API “/bitstreams” endpoint.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dspace.bitstream.Bitstream">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.bitstream.</span></span><span class="sig-name descname"><span class="pre">Bitstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.bitstream.Bitstream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class representing a DSpace Bitstream object and its associated API calls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Description of the bitstream</p></li>
+<li><p><strong>file_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – File path to the bitstream. Required to post bitstream to DSpace</p></li>
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Name of the Bitstream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>bundleName</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The name of the DSpace bundle of the bitstream</p></li>
+<li><p><strong>(</strong><strong>Optional</strong><strong>[</strong><strong>dict</strong><strong>[</strong><strong>str</strong> (<em>checkSum</em>) – str]]): The DSpace-calculated checksum for the
+bitstream, e.g. {“value”:”62778292a3a6dccbe2662a2bfca3b86e”,
+“checkSumAlgorithm”:”MD5”}</p></li>
+<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Description of the bitstream</p></li>
+<li><p><strong>format</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace-identified file format of the bitstream</p></li>
+<li><p><strong>(</strong><strong>List</strong><strong>[</strong><strong>str</strong><strong>]</strong> (<em>expand</em>) – The expand options for the DSpace REST object</p></li>
+<li><p><strong>file_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – File path to the bitstream. Required to post
+bitstream to DSpace. Not part of the DSpace object model, but necessary to
+associate a file with the bitstream</p></li>
+<li><p><strong>link</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace REST API path for the bitstream</p></li>
+<li><p><strong>mimeType</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace-identified mimetype of the bitstream</p></li>
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The name of the bitstream in DSpace</p></li>
+<li><p><strong>parentObject</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Parent object of the bitstream in DSpace</p></li>
+<li><p><strong>policies</strong> (<em>Optional</em><em>[</em><em>list</em><em>]</em>) – Resource policies applied to the bitstream</p></li>
+<li><p><strong>retrieveLink</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace REST API path to directly retrieve the
+bitstream file</p></li>
+<li><p><strong>sequenceId</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – The DSpace bitstream sequence ID</p></li>
+<li><p><strong>sizeBytes</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – The DSpace-identified size of the bitstream in bytes</p></li>
+<li><p><strong>type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace object type</p></li>
+<li><p><strong>uuid</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – UUID of the bitstream in DSpace</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.bitstream.Bitstream.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.bitstream.Bitstream.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete bitstream from DSpace and unset relevant bitstream attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><em>dspace.client.DSpaceClient</em></a>) – An authenticated instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code> class</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>requests.HTTPError</strong> – 404 Not Found if no bitstream matching
+    provided UUID</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.bitstream.Bitstream.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_handle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.bitstream.Bitstream.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post bitstream to an item and set bitstream attributes to response object values.</p>
+<p>Requires either the <cite>item_handle</cite> or the <cite>item_uuid</cite>, but not both. If
+both are passed, defaults to using the UUID.</p>
+<p>The <a class="reference external" href="https://pypi.org/project/smart-open/">smart_open library</a> replaces the
+standard open function to stream local or remote files for the POST request.</p>
+<p>Note: DSpace internally uses the file extension from the provided “name”
+parameter (the <cite>bitstream.name</cite> attribute) to assign a format and mimeType when
+creating a new bitstream via API post. If a name with a file extension (e.g.,
+“test-file.pdf”) is not provided, DSpace will assign a format of “Unknown” and
+a mimeType of “application/octet-stream”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> (<a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><em>dspace.client.DSpaceClient</em></a>) – An authenticated instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code> class</p></li>
+<li><p><strong>item_handle</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The handle of an existing item in DSpace to post the bitstream
+to</p></li>
+<li><p><strong>item_uuid</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The UUID of an existing item in DSpace to post the bitstream to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>requests.HTTPError</strong> – 404 Not Found if no item matching
+    provided handle/UUID</p></li>
+<li><p><a class="reference internal" href="#dspace.errors.MissingFilePathError" title="dspace.errors.MissingFilePathError"><strong>MissingFilePathError</strong></a> – if <cite>file_path</cite> attribute is not set on Bitstream
+    instance</p></li>
+<li><p><a class="reference internal" href="#dspace.errors.MissingIdentifierError" title="dspace.errors.MissingIdentifierError"><strong>MissingIdentifierError</strong></a> – if neither <cite>item_handle</cite> nor <cite>item_uuid</cite>
+    parameter is provided</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dspace.client">
+<span id="dspace-client-module"></span><h2>dspace.client module<a class="headerlink" href="#module-dspace.client" title="Permalink to this headline">¶</a></h2>
+<p>DSpace client module.</p>
+<p>This module includes a Client class for interacting with the DSpace REST API.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.client.</span></span><span class="sig-name descname"><span class="pre">DSpaceClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'application/json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Client class for interacting with the DSpace REST API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_url</strong> (<em>str</em>) – The base url of the DSpace API</p></li>
+<li><p><strong>accept_header</strong> (<em>str</em>) – The response type to use in the requests “accept” header – one
+of “application/json” or “application/xml”, defaults to “application/json”</p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – The <a class="reference external" href="https://docs.python-requests.org/en/latest/user/quickstart/#timeouts">timeout</a>, in seconds, to use for all requests sent to the DSpace
+API, defaults to 3.0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>base_url</strong> – The base url of the DSpace API</p></li>
+<li><p><strong>cookies</strong> – Cookies for use in client requests</p></li>
+<li><p><strong>headers</strong> – Headers for use in client requests</p></li>
+<li><p><strong>timeout</strong> – Timeout value for use in client requests</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a DELETE request to the specified endpoint and return the result.</p>
+<p>This method is internal to the library (although not private to this class)
+and should generally not be called directly. It is used by other classes to send
+DELETE requests using the client’s stored authentication cookie and headers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>endpoint</strong> (<em>str</em>) – The DSPace REST endpoint for the object to delete, e.g.
+“/items/7c8e7bbc-e36b-4194-87e5-5347e3a69a57”</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code> object</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requests.exceptions.HTTPError</strong> – if response status code is 4xx or
+    5xx</p></li>
+<li><p><strong>requests.exceptions.Timeout</strong> – if server takes longer than the
+    client’s timeout value to respond</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>requests.models.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a GET request to the specified endpoint and return the result.</p>
+<p>This method is internal to the library (although not private to this class)
+and should generally not be called directly. It is used by other classes to send
+GET requests using the client’s stored authentication cookie and headers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<em>str</em>) – The DSPace REST endpoint to get, e.g. “/status”</p></li>
+<li><p><strong>params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – Additional params that should be submitted with the request</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code> object</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requests.exceptions.HTTPError</strong> – if response status code is 4xx or
+    5xx</p></li>
+<li><p><strong>requests.exceptions.Timeout</strong> – if server takes longer than the
+    client’s timeout value to respond</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>requests.models.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.get_object_by_handle">
+<span class="sig-name descname"><span class="pre">get_object_by_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.get_object_by_handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a DSpace object based on its handle instead of its UUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handle</strong> (<em>str</em>) – Handle of a DSpace community, collection, or item, e.g.
+‘1721.1/130883’</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code> object.
+Response body is a json representation of the DSpace object with the
+provided handle</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>requests.HTTPError</strong> – 500 Server Error if no object matching the
+    provided handle is found</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>requests.models.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.login">
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a user to the DSpace REST API.</p>
+<p>If authentication is successful, adds an object to <cite>self.cookies</cite> equal to the
+response ‘JSESSIONID’ cookie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> (<em>str</em>) – The email address of the DSpace user</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the DSpace user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>requests.exceptions.HTTPError</strong> – 401 Client Error if provided
+    credentials are unauthorized</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a POST request to a specified endpoint and return the result.</p>
+<p>This method is internal to the library (although not private to this class)
+and should generally not be called directly. It is used by other classes to send
+POST requests using the client’s stored authentication cookie and headers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<em>str</em>) – The DSPace REST endpoint to post to, e.g. “/login”</p></li>
+<li><p><strong>data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>bytes</em><em>, </em><em>dict</em><em>]</em><em>]</em>) – The data to post</p></li>
+<li><p><strong>json</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – Data to post as JSON (uses requests’ built-in JSON encoder)</p></li>
+<li><p><strong>params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – Additional params that should be submitted with the request</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code> object</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requests.exceptions.HTTPError</strong> – if response status code is 4xx or
+    5xx</p></li>
+<li><p><strong>requests.exceptions.Timeout</strong> – if server takes longer than the
+    client’s timeout value to respond</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>requests.models.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.client.DSpaceClient.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dspace.client.DSpaceClient.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current authentication status of <a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code> object.
+Response body is a json representation of a <a class="reference external" href="https://wiki.lyrasis.org/display/DSDOC6x/REST+API#RESTAPI-StatusObject">DSpace Status object</a></p>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>requests.models.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dspace.errors">
+<span id="dspace-errors-module"></span><h2>dspace.errors module<a class="headerlink" href="#module-dspace.errors" title="Permalink to this headline">¶</a></h2>
+<p>DSpace errors module.</p>
+<p>This module includes custom Error classes that may be raised by DSpace Python client
+library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dspace.errors.DSpacePythonError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.errors.</span></span><span class="sig-name descname"><span class="pre">DSpacePythonError</span></span><a class="headerlink" href="#dspace.errors.DSpacePythonError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base class for errors raise by the dspace-python-client library.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dspace.errors.DSpacePythonError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#dspace.errors.DSpacePythonError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.errors.DSpacePythonError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dspace.errors.DSpacePythonError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="dspace.errors.MissingFilePathError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.errors.</span></span><span class="sig-name descname"><span class="pre">MissingFilePathError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.errors.MissingFilePathError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dspace.errors.DSpacePythonError" title="dspace.errors.DSpacePythonError"><code class="xref py py-class docutils literal notranslate"><span class="pre">dspace.errors.DSpacePythonError</span></code></a></p>
+<p>Exception raised when required file_path attribute is not set on a bitstream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expression</strong> (<em>str</em>) – Input expression in which the error occurred</p>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Input expression in which the error occurred</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Explanation of the error</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dspace.errors.MissingFilePathError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#dspace.errors.MissingFilePathError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.errors.MissingFilePathError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dspace.errors.MissingFilePathError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="dspace.errors.MissingIdentifierError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.errors.</span></span><span class="sig-name descname"><span class="pre">MissingIdentifierError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.errors.MissingIdentifierError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dspace.errors.DSpacePythonError" title="dspace.errors.DSpacePythonError"><code class="xref py py-class docutils literal notranslate"><span class="pre">dspace.errors.DSpacePythonError</span></code></a></p>
+<p>Exception raised when required identifier is not provided.</p>
+<p>Raised when neither a handle nor a uuid is provided to a request that requires one
+of the two.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expression</strong> (<em>str</em>) – Input expression in which the error occurred</p>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>expression</strong> (<em>str</em>) – Input expression in which the error occurred</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Explanation of the error</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dspace.errors.MissingIdentifierError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#dspace.errors.MissingIdentifierError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.errors.MissingIdentifierError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dspace.errors.MissingIdentifierError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dspace.item">
+<span id="dspace-item-module"></span><h2>dspace.item module<a class="headerlink" href="#module-dspace.item" title="Permalink to this headline">¶</a></h2>
+<p>DSpace item module.</p>
+<p>This module includes classes representing DSpace Item and MetadataEntry objects, along
+with functions for interacting with the DSpace REST API “/items” endpoint.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dspace.item.Item">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.item.</span></span><span class="sig-name descname"><span class="pre">Item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bitstreams</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.Item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class representing a DSpace Item object and its associated API calls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bitstreams</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="#dspace.bitstream.Bitstream" title="dspace.bitstream.Bitstream"><em>Bitstream</em></a><em>]</em><em>]</em>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">Bitstream</span></code> objects to associate with the item</p></li>
+<li><p><strong>metadata</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="#dspace.item.MetadataEntry" title="dspace.item.MetadataEntry"><em>MetadataEntry</em></a><em>]</em><em>]</em>) – <a class="reference internal" href="#dspace.item.MetadataEntry" title="dspace.item.MetadataEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataEntry</span></code></a> objects to associate with the item</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>archived</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Item archived status in DSpace (“true” or “false”)</p></li>
+<li><p><strong>bitstreams</strong> (Optional[List[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Bitstream</span></code>]]) – List of <code class="xref py py-class docutils literal notranslate"><span class="pre">Bitstream</span></code>
+objects belonging to the item</p></li>
+<li><p><strong>expand</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The expand options for the DSpace REST object</p></li>
+<li><p><strong>handle</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The handle of the item in DSpace</p></li>
+<li><p><strong>lastModified</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Timestamp the item was last modified in DSpace</p></li>
+<li><p><strong>link</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The DSpace REST API path for the item</p></li>
+<li><p><strong>metadata</strong> (Optional[List:obj:<cite>MetadataEntry</cite>]]) – List of
+<a class="reference internal" href="#dspace.item.MetadataEntry" title="dspace.item.MetadataEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataEntry</span></code></a> objects representing the item’s metadata</p></li>
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The name of the item in DSpace</p></li>
+<li><p><strong>parentCollection</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Parent collection of the item in DSpace</p></li>
+<li><p><strong>parentCollectionList</strong> (<em>Optiona</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – List of parent collections of the
+item in DSpace</p></li>
+<li><p><strong>parentCommunityList</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – List of parent communities of the
+item in DSpace</p></li>
+<li><p><strong>type</strong> (<em>str</em>) – The DSpace object type</p></li>
+<li><p><strong>uuid</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The internal UUID of the item in DSpace</p></li>
+<li><p><strong>withdrawn</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Item withdrawn status in DSpace (“true” or “false”)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.item.Item.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.Item.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete item from DSpace and unset relevant item attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><em>dspace.client.DSpaceClient</em></a>) – An authenticated instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code> class</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>requests.HTTPError</strong> – 404 Not Found if no item matching
+    provided UUID</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.item.Item.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_handle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.Item.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post item to a collection and set item attributes to response object values.</p>
+<p>Requires either the <cite>collection_handle</cite> or the <cite>collection_uuid</cite>, but not both.
+If both are passed, defaults to using the UUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> (<a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><em>dspace.client.DSpaceClient</em></a>) – An authenticated instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code> class</p></li>
+<li><p><strong>collection_handle</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The handle of an existing collection in DSpace to post
+the item to</p></li>
+<li><p><strong>collection_uuid</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The UUID of an existing collection in DSpace to post the
+item to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>requests.HTTPError</strong> – 404 Not Found if no collection matching
+    provided handle/UUID</p></li>
+<li><p><a class="reference internal" href="#dspace.errors.MissingIdentifierError" title="dspace.errors.MissingIdentifierError"><strong>MissingIdentifierError</strong></a> – if neither <cite>collection_handle</cite> nor <cite>collection_uuid</cite>
+    parameter is provided</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dspace.item.MetadataEntry">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">dspace.item.</span></span><span class="sig-name descname"><span class="pre">MetadataEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.MetadataEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class representing a <a class="reference external" href="https://wiki.lyrasis.org/display/DSDOC6x/REST+API#RESTAPI-MetadataEntryObject&gt;`">DSpace MetadataEntry object</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – DSpace metadata field name in qualified Dublin Core format, e.g.
+‘dc.description.abstract’</p></li>
+<li><p><strong>value</strong> (<em>str</em>) – DSpace metadata field value, e.g. ‘The abstract for this item’</p></li>
+<li><p><strong>language</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Language of the DSpace metadata field, e.g. ‘en_US’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – Name of the metadata entry</p></li>
+<li><p><strong>value</strong> (<em>str</em>) – Value of the metadata entry</p></li>
+<li><p><strong>language</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Language of the metadata entry</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.item.MetadataEntry.from_dict">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.MetadataEntry.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to create a MetadataEntry object from a dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entry</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – <p>A dict representing a DSpace metadata field name, value, and
+optionally language. Dict must be structured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;dc.title&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Item Title&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span> <span class="p">[</span><span class="n">Optional</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>class: <cite>MetadataEntry</cite> object</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>class: <cite>KeyError</cite>: if metadata entry dict does not contain both “key” and
+    “value” items</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#dspace.item.MetadataEntry" title="dspace.item.MetadataEntry">dspace.item.MetadataEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dspace.item.MetadataEntry.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dspace.item.MetadataEntry.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to convert the MetadataEntry object to a dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dict representation of the metadata entry</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dspace.utils">
+<span id="dspace-utils-module"></span><h2>dspace.utils module<a class="headerlink" href="#module-dspace.utils" title="Permalink to this headline">¶</a></h2>
+<p>DSpace utils module.</p>
+<p>Utility functions for the DSpace Python client library.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="dspace.utils.select_identifier">
+<span class="sig-prename descclassname"><span class="pre">dspace.utils.</span></span><span class="sig-name descname"><span class="pre">select_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dspace.utils.select_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the uuid of a DSpace object given a handle, a uuid, or both.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> (<a class="reference internal" href="#dspace.client.DSpaceClient" title="dspace.client.DSpaceClient"><em>dspace.client.DSpaceClient</em></a>) – Authenticated instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">DSpaceClient</span></code> class</p></li>
+<li><p><strong>handle</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Handle of a DSpace object</p></li>
+<li><p><strong>uuid</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – UUID of a DSpace object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>UUID of DSpace object</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requests.HTTPError</strong> – 404 Not Found if no DSpace object exists matching
+    provided handle</p></li>
+<li><p><a class="reference internal" href="#dspace.errors.MissingIdentifierError" title="dspace.errors.MissingIdentifierError"><strong>MissingIdentifierError</strong></a> – if neither a handle nor a UUID is provided</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-dspace">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dspace" title="Permalink to this headline">¶</a></h2>
+<p>DSpace Python Client package.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-left" title="dspace" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, MIT Libraries.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
